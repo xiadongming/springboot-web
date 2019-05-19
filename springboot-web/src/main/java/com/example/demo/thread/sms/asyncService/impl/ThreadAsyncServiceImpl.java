@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -20,13 +21,14 @@ public class ThreadAsyncServiceImpl  implements ThreadAsyncService {
 	 @Autowired
 	 private IQueryAmountService queryAmountServiceImpl;
 	 
-	 
+	@Scheduled(cron="0/5 * * * * ? ")
 	@Async("taskExecutor")
 	@Override
 	public void executeAsync() {
 		        logger.info("start executeAsync=============");
 		        try {
 		            System.out.println("当前运行的线程名称：" + Thread.currentThread().getName());
+		            System.out.println("吕瑞娜");
 		            /**
 		             * 在次方法中添加任务，即可支持多线程的调用，在浏览器F5刷新，既是多线程调用的
 		             * */
@@ -37,6 +39,7 @@ public class ThreadAsyncServiceImpl  implements ThreadAsyncService {
 		            List<AmountChange> listAmount =  getAmountChangeInfo();
 		            if(!listAmount.isEmpty()&&null!=listAmount) {
 		            	//调用发送短信功能
+		            	
 		            	
 		            }
 		            
