@@ -1,4 +1,4 @@
-package com.example.register.mapper;
+package com.example.demo.register.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.example.demo.vo.UserVo;

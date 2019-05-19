@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.queryanmount.mapper.QueryAmountMapper">
+
+
+   <resultMap id="UserMap" type="com.example.demo.po.AmountChange">
+          <id property="id" column="id" />
+          <result property="userName" column="user_name" />
+          <result property="userId" column="user_id"/>
+          <result property="telNum" column="tel_num"/>
+          <result property="amountNum" column="amount_num"/>
+          <result property="isDel" column="is_del"/>
+   </resultMap>
+ 
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, userId, userName,amountNum,telNum,isDel 
+       <!--  id as id, user_id as userId, user_name as userName,amount_num as amountNum,tel_num as telNum,is_del as isDel -->
+       <!-- id, userId, userName,amountNum,telNum,isDel -->
+    </sql>
+
+</mapper>

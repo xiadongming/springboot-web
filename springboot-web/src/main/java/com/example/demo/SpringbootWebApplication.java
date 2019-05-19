@@ -1,10 +1,15 @@
 package com.example.demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.scheduling.annotation.EnableAsync;
 
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
+@MapperScan(basePackages= {"com.example.demo.queryanmount.mapper",
+		                   "com.example.demo.register.mapper"})
+@EnableAsync
 public class SpringbootWebApplication {
 
 	public static void main(String[] args) {

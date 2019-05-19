@@ -1,4 +1,4 @@
-package com.example.thread.asyncService;
+package com.example.demo.thread.sms.asyncService;
 
 public interface ThreadAsyncService {
 	/**

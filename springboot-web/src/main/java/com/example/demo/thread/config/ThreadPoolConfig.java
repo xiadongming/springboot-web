@@ -1,4 +1,4 @@
-package com.example.thread.config;
+package com.example.demo.thread.config;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -10,16 +10,14 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @EnableAsync
 public class ThreadPoolConfig {
-	
-	
 
     @Bean
 	public TaskExecutor taskExecutor() {
 		ThreadPoolTaskExecutor executor  = new ThreadPoolTaskExecutor();
 		//核心线程数
-		executor.setCorePoolSize(2);
+		executor.setCorePoolSize(6);
 		//最大线程数
-		executor.setMaxPoolSize(5);
+		executor.setMaxPoolSize(10);
 		//设置队列容量
 		executor.setQueueCapacity(3);
 		//设置活跃时间

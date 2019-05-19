@@ -1,4 +1,4 @@
-package com.example.register.service;
+package com.example.demo.register.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.example.demo.vo.UserVo;
