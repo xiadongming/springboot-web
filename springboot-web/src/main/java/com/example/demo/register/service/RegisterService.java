@@ -5,4 +5,5 @@ import com.example.demo.vo.UserVo;
 
 public interface RegisterService extends IService<UserVo>{
 
+	
 }

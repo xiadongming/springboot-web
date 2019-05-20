@@ -8,6 +8,8 @@ public class UserVo {
 	
 	private String phoneNum;
 	
+	private String pwd;
+	
 	private Boolean isDel;
 
 	public String getUserName() {
@@ -26,6 +28,14 @@ public class UserVo {
 		this.phoneNum = phoneNum;
 	}
 
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
 	public Boolean getIsDel() {
 		return isDel;
 	}
@@ -36,9 +46,7 @@ public class UserVo {
 
 	@Override
 	public String toString() {
-		return "UserVo [userName=" + userName + ", phoneNum=" + phoneNum + ", isDel=" + isDel + "]";
+		return "UserVo [userName=" + userName + ", phoneNum=" + phoneNum + ", pwd=" + pwd + ", isDel=" + isDel + "]";
 	}
-	
-	
 
 }

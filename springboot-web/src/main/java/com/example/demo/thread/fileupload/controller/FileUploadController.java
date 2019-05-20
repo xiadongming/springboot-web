@@ -23,6 +23,7 @@ public class FileUploadController {
 	 public String fileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
 		 String originalFilename = file.getOriginalFilename();
 
+		 
 		 File file2 = new File("\\"+originalFilename);
 		 OutputStream os = new FileOutputStream(file2);
 		 InputStream in = file.getInputStream();
