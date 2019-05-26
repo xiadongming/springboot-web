@@ -21,7 +21,7 @@ public class ThreadAsyncServiceImpl  implements ThreadAsyncService {
 	 @Autowired
 	 private IQueryAmountService queryAmountServiceImpl;
 	 
-	@Scheduled(cron="0/5 * * * * ? ")
+//	@Scheduled(cron="0/5 * * * * ? ")
 	@Async("taskExecutor")
 	@Override
 	public void executeAsync() {
