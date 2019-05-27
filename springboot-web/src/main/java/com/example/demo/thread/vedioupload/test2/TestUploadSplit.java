@@ -18,7 +18,9 @@ import com.example.demo.thread.vedioupload.controller.MediaUploadController;
 @RequestMapping("/video")
 public class TestUploadSplit {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MediaUploadController.class);
+
 	
+	private Integer chunk = 0;
 	private String uploadPath = "D:/0_000ffmpeg/webupload/";
 
 	/**
@@ -28,11 +30,15 @@ public class TestUploadSplit {
 
 	// 上传文件，将文件拆分开
 	@RequestMapping("/upload")
-	public void testSplitChunk(MultipartFile file) throws Exception {
+	public void uploadchunk(MultipartFile file) throws Exception {
+		long size = file.getSize();
 		String fileMd5 = "abcd";
-		String chunk = "";
+		// chunk是当前文件额下标，，，即块文件的数量
+		
+		chunk = chunk + 1;
 
 		if (file == null) {
+			throw new Exception("上传文件不能为空");
 		}
 		// 检查块文件目录
 		boolean fileFold = createChunkFileFold(fileMd5);
@@ -65,26 +71,30 @@ public class TestUploadSplit {
 		}
 
 	}
-	//得到块文件所在目录
+
+	// 得到块文件所在目录
 	private String getChunkFileFolderPath(String fileMd5) {
-		String fileChunkFolderPath = getFileFolderPath(fileMd5) +"/" + "chunks" + "/";
+		String fileChunkFolderPath = getFileFolderPath(fileMd5) + "/" + "chunks" + "/";
 		return fileChunkFolderPath;
 	}
-	//得到文件所在目录
+
+	// 得到文件所在目录
 	private String getFileFolderPath(String fileMd5) {
-		String fileFolderPath = uploadPath+ fileMd5.substring(0, 1) + "/" + fileMd5.substring(1,2) + "/" + fileMd5 + "/" ;
+		String fileFolderPath = uploadPath + fileMd5.substring(0, 1) + "/" + fileMd5.substring(1, 2) + "/" + fileMd5
+				+ "/";
 		return fileFolderPath;
 	}
+
 	// 创建块文件目录
 	private boolean createChunkFileFold(String fileMd5) {
-		//创建上传文件目录
+		// 创建上传文件目录
 		String chunkFileFolderPath = getChunkFileFolderPath(fileMd5);
 		File chunkFileFolder = new File(chunkFileFolderPath);
 		if (!chunkFileFolder.exists()) {
-		//创建文件夹
-		boolean mkdirs = chunkFileFolder.mkdirs();
-		return mkdirs;
-		} 
+			// 创建文件夹
+			boolean mkdirs = chunkFileFolder.mkdirs();
+			return mkdirs;
+		}
 		return true;
 	}
 }
