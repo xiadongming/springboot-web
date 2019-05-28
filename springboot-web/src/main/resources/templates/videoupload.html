@@ -37,12 +37,12 @@
     <script src="/uploadfile/js/layui/layui.js" charset="utf-8"></script>
     <script>
         var element=null;
-
+        var chunk =0;
         var uploader = WebUploader.create({
             // swf文件路径
             swf: '/uploadfile/js/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: 'http://localhost:8280/video/upload',
+            server: 'http://localhost:8280/video/upload?chunk++',
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
             pick: '#picker',

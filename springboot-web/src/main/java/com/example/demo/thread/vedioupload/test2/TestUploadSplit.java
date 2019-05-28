@@ -30,12 +30,12 @@ public class TestUploadSplit {
 
 	// 上传文件，将文件拆分开
 	@RequestMapping("/upload")
-	public void uploadchunk(MultipartFile file) throws Exception {
+	public void uploadchunk(MultipartFile file,String chunk) throws Exception {
 		long size = file.getSize();
 		String fileMd5 = "abcd";
 		// chunk是当前文件额下标，，，即块文件的数量
 		
-		chunk = chunk + 1;
+	//	chunk = chunk + 1;
 
 		if (file == null) {
 			throw new Exception("上传文件不能为空");
