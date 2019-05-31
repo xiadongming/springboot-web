@@ -8,19 +8,20 @@ import java.io.InputStream;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.thread.vedioupload.controller.MediaUploadController;
 
-@RestController
+@Controller
 @RequestMapping("/video")
 public class TestUploadSplit {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MediaUploadController.class);
 
 	
-	private Integer chunk = 0;
+	private Integer i = 0;
 	private String uploadPath = "D:/0_000ffmpeg/webupload/";
 
 	/**
@@ -30,11 +31,12 @@ public class TestUploadSplit {
 
 	// 上传文件，将文件拆分开
 	@RequestMapping("/upload")
-	public void uploadchunk(MultipartFile file,String chunk) throws Exception {
+	public String uploadchunk(MultipartFile file,String chunk) throws Exception {
 		long size = file.getSize();
-		String fileMd5 = "abcd";
+		String fileMd5 =  file.getOriginalFilename();
 		// chunk是当前文件额下标，，，即块文件的数量
-		
+		//String name = file.getName();
+		//String originalFilename = file.getOriginalFilename();
 	//	chunk = chunk + 1;
 
 		if (file == null) {
@@ -69,7 +71,12 @@ public class TestUploadSplit {
 				e.printStackTrace();
 			}
 		}
-
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("success");
+		String path = getChunkFileFolderPath(fileMd5) + chunk;
+		modelAndView.addObject(path);
+//		System.out.println(i++);
+      return "success";
 	}
 
 	// 得到块文件所在目录

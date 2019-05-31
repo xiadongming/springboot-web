@@ -29,7 +29,7 @@ public class RegisterController {
 	public String getRegister(@RequestBody String userVo) {
 		System.out.println(userVo);
 
-		return "success";
+		return "index";
 	}
 
 }
