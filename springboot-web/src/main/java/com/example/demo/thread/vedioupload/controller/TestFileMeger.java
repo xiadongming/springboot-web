@@ -1,4 +1,4 @@
-package com.example.demo.thread.vedioupload.test2;
+package com.example.demo.thread.vedioupload.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,21 +29,24 @@ public class TestFileMeger {
 
 	// 合并块文件
 	@RequestMapping("/meger")
-	public Boolean mergechunks(String fileMd5)
-			throws Exception {
-		fileMd5 = "abcd";
-		  Long fileSize = 111111L;
+	public Boolean mergechunks(String fileMd5) throws Exception {
+		// 将文件名称传过来 //2ad77a5ce404ca2f74325935768a7442
+		fileMd5 = "12345.avi";
+		Long fileSize = 111111L;
 		String mimetype = "video/mimeto";
 		String fileName = "first";
-		String fileExt = ".mp4";
-		// 获取块文件的路径
+		String fileExt = "avi";
+		// 获取块文件的路径//D:/0_000ffmpeg/webupload/2/a/2ad77a5ce404ca2f74325935768a7442/chunks/
 		String chunkfileFolderPath = getChunkFileFolderPath(fileMd5);
+		//fileMd5 = DigestUtils.md5Hex("lucene.avi");// 不能帶有文件后缀
 		File chunkfileFolder = new File(chunkfileFolderPath);
 		if (!chunkfileFolder.exists()) {
 			chunkfileFolder.mkdirs();
 		}
 		// 合并文件路径
-		File mergeFile = new File(getFilePath(fileMd5, fileExt));
+		// //D:/0_000ffmpeg/webupload/2/a/2ad77a5ce404ca2f74325935768a7442/2ad77a5ce404ca2f74325935768a7442.mp4
+		String filePath = getFilePath(fileMd5, fileExt);
+		File mergeFile = new File(filePath);
 		// 创建合并文件
 		// 合并文件存在先删除再创建
 		if (mergeFile.exists()) {
@@ -124,15 +127,21 @@ public class TestFileMeger {
 		if (mergeFile == null || StringUtils.isEmpty(md5)) {
 			return false;
 		}
-
+		String md5Str = mergeFile.toString();
+		md5 = md5Str.substring(0, md5Str.lastIndexOf("\\")) + "\\" + md5 + md5Str.substring(md5Str.lastIndexOf("."));
 		// 进行md5校验
 		FileInputStream mergeFileInputstream = null;
 		try {
 			mergeFileInputstream = new FileInputStream(mergeFile);
+			FileInputStream mergeFileInputstream2 = new FileInputStream(md5);
 			// 得到文件的md5
 			String mergeFileMd5 = DigestUtils.md5Hex(mergeFileInputstream);
+			String mergeFileMd5_2 = DigestUtils.md5Hex(mergeFileInputstream2);
+			/*
+			 * // 比较md5 if (md5.equalsIgnoreCase(mergeFileMd5)) { return true; }
+			 */
 			// 比较md5
-			if (md5.equalsIgnoreCase(mergeFileMd5)) {
+			if (mergeFileMd5_2.equalsIgnoreCase(mergeFileMd5)) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -144,6 +153,7 @@ public class TestFileMeger {
 				mergeFileInputstream.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+
 			}
 		}
 		return false;
@@ -202,7 +212,7 @@ public class TestFileMeger {
 	}
 
 	private String getChunkFileFolderPath(String fileMd5) {
-		String fileChunkFolderPath = getFileFolderPath(fileMd5) + "/" + "chunks" + "/";
+		String fileChunkFolderPath = getFileFolderPath(fileMd5) + "chunks" + "/";
 		return fileChunkFolderPath;
 
 	}

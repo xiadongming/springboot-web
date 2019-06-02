@@ -1,4 +1,4 @@
-package com.example.demo.thread.vedioupload.test2;
+package com.example.demo.thread.vedioupload.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.thread.vedioupload.controller.MediaUploadController;
-
 @Controller
 @RequestMapping("/video")
 public class TestUploadSplit {
-	private final static Logger LOGGER = LoggerFactory.getLogger(MediaUploadController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(TestUploadSplit.class);
 
 	
 	private Integer i = 0;

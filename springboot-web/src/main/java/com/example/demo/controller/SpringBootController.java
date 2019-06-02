@@ -11,7 +11,8 @@ public class SpringBootController {
 	public String getStringWeb() {
 		System.out.println("首页面");
 		
-		return "videoupload";
+		//return "videoupload";
+		return "video3";
 	}
 	
 	
