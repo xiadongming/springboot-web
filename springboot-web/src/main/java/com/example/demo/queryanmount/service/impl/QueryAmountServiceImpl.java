@@ -10,4 +10,9 @@ import com.example.demo.queryanmount.service.IQueryAmountService;
 @Service
 public class QueryAmountServiceImpl extends ServiceImpl<BaseMapper<AmountChange>, AmountChange> implements IQueryAmountService{
 
+	
+	
+	
+	
+	
 }
